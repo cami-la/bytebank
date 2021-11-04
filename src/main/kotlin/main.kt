@@ -1,81 +1,88 @@
 fun main() {
     println("Bem-vindo ao Bytebank");
 
-    val contaAlex: Conta = Conta();
-    contaAlex.titular = "Alex";
-    contaAlex.numero = 1000;
-    contaAlex.setSaldo(-200.0);
-    println(contaAlex.getSaldo());
+    val contaAlex: Conta = Conta(titular = "Alex", numero = 1000);
+    contaAlex.deposita(200.0);
+    println(contaAlex.saldo);
 
-    val contaFran: Conta = Conta();
-    contaFran.titular = "Fran";
-    contaFran.numero = 1001;
-    contaFran.setSaldo(300.0);
-    println(contaFran.getSaldo());
+    val contaFran: Conta = Conta(titular = "Fran", numero = 1001);
+    contaFran.deposita(300.0);
+    println(contaFran.saldo);
+
+    val contaMaria: Conta = Conta("Maria", 1002);
+    contaFran.deposita(300.0);
+    println(contaFran.saldo);
+
+    val contaJoao: Conta = Conta("João", 1003);
+    contaFran.deposita(300.0);
+    println(contaFran.saldo);
 
 
-    /*println(contaAlex.titular);
+    println(contaAlex.titular);
     println(contaAlex.numero);
     println(contaAlex.saldo);
     println(contaFran.titular);
     println(contaFran.numero);
-    println(contaFran.saldo);*/
-//    /*println("--------")
-//    println(contaAlex.saldo);
-//    println("Depositando na conta do Alex");
-//    contaAlex.deposita(50.0);
-//    println(contaAlex.saldo);
-//    println(contaFran.saldo);
-//    println("Depositando na conta da Fran");
-//    contaFran.deposita(70.0);
-//    println(contaFran.saldo);
-//
-//    println("--------")
-//    println("--------")
-//    println("Sacando na conta do Alex");
-//    contaAlex.saca(250.0);
-//    println(contaAlex.saldo);
-//    println("Depositando na conta da Fran");
-//    contaFran.saca(100.0);
-//    println(contaFran.saldo);
-//    println("--------")
-//    println("--------")
-//    println("Saque em excesso conta Alex");
-//    contaAlex.saca(100.0);
-//    println(contaAlex.saldo);
-//    println("Saque em excesso conta Fran");
-//    contaAlex.saca(500.0);
-//    println(contaFran.saldo);
-//    println("--------")
-//    println("--------")
-//
-//    println(contaFran.saldo);
-//    println(contaAlex.saldo);
-//    println("Transferência Fran -> Alex");
-//    if(contaFran.transfere(100.0, contaAlex)) println("Transferência sucedida!");
-//    else println("Falha na transferência.")
-//    println(contaFran.saldo);
-//    println(contaAlex.saldo);
-//    println("---")
-//    println(contaFran.saldo);
-//    println(contaAlex.saldo);
-//    println("Transferência Alex -> Fran");
-//    if(contaAlex.transfere(300.0, contaFran)) println("Transferência sucedida!");
-//    else println("Falha na transferência.")
-//    println(contaFran.saldo);
-//    println(contaAlex.saldo);*/
+    println(contaFran.saldo);
+    println("--------")
+    println(contaAlex.saldo);
+    println("Depositando na conta do Alex");
+    contaAlex.deposita(50.0);
+    println(contaAlex.saldo);
+    println(contaFran.saldo);
+    println("Depositando na conta da Fran");
+    contaFran.deposita(70.0);
+    println(contaFran.saldo);
+
+    println("--------")
+    println("--------")
+    println("Sacando na conta do Alex");
+    contaAlex.saca(250.0);
+    println(contaAlex.saldo);
+    println("Depositando na conta da Fran");
+    contaFran.saca(100.0);
+    println(contaFran.saldo);
+    println("--------")
+    println("--------")
+    println("Saque em excesso conta Alex");
+    contaAlex.saca(100.0);
+    println(contaAlex.saldo);
+    println("Saque em excesso conta Fran");
+    contaAlex.saca(500.0);
+    println(contaFran.saldo);
+    println("--------")
+    println("--------")
+
+    println(contaFran.saldo);
+    println(contaAlex.saldo);
+    println("Transferência Fran -> Alex");
+    if(contaFran.transfere(100.0, contaAlex)) println("Transferência sucedida!");
+    else println("Falha na transferência.")
+    println(contaFran.saldo);
+    println(contaAlex.saldo);
+    println("---")
+    println(contaFran.saldo);
+    println(contaAlex.saldo);
+    println("Transferência Alex -> Fran");
+    if(contaAlex.transfere(300.0, contaFran)) println("Transferência sucedida!");
+    else println("Falha na transferência.")
+    println(contaFran.saldo);
+    println(contaAlex.saldo);
 
 
 }
 
 
-class Conta {
-    var titular: String = "";
-    var numero: Int = 0;
-    private var saldo: Double = 0.0;
+class Conta(
+    var titular: String,
+    val numero: Int
+) {
+    var saldo: Double = 0.0
+        private set;
+
 
     fun deposita(valor: Double) {
-        this.saldo += valor;
+        if(valor > 0) this.saldo += valor;
     }
 
     fun saca(valor: Double) {
@@ -91,14 +98,6 @@ class Conta {
         return false;
     }
 
-    fun getSaldo(): Double {
-        return this.saldo;
-    }
-
-    fun setSaldo(valor: Double) {
-        if(valor > 0) this.saldo = valor;
-    }
-
 }
 
 fun testaCopiasEReferencias() {
@@ -109,7 +108,7 @@ fun testaCopiasEReferencias() {
     println("numeroX $numeroX");
     println("numeroY $numeroY");
 
-    val contaJoao: Conta = Conta();
+   /* val contaJoao: Conta = Conta();
     contaJoao.titular = "João";
     var contaMaria: Conta = Conta();
 
@@ -119,7 +118,7 @@ fun testaCopiasEReferencias() {
     println("Titular conta Maria: ${contaMaria.titular}");
 
     println(contaJoao);
-    println(contaMaria);
+    println(contaMaria);*/
 
 }
 
