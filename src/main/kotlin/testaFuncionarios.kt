@@ -1,5 +1,5 @@
 fun testaFuncionarios() {
-    var alex = Funcionario(
+    var alex = Analista (
         nome = "Alex",
         cpf = "111.111.111-11",
         salario = 1000.0,

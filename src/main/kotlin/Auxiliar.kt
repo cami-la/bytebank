@@ -1,4 +1,4 @@
-class Analista(nome: String,
+class Auxiliar(nome: String,
                cpf: String,
                salario: Double,
                )

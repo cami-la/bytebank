@@ -6,16 +6,16 @@ fun testaCopiasEReferencias() {
     println("numeroX $numeroX");
     println("numeroY $numeroY");
 
-    /* val contaJoao: Conta = Conta();
+    val contaJoao = ContaCorrente("João", 1002);
      contaJoao.titular = "João";
-     var contaMaria: Conta = Conta();
 
+     var contaMaria = ContaPoupanca("Maria", 1003);
      contaMaria.titular = "Maria";
 
      println("Titular conta João: ${contaJoao.titular}");
      println("Titular conta Maria: ${contaMaria.titular}");
 
      println(contaJoao);
-     println(contaMaria);*/
+     println(contaMaria);
 
 }
