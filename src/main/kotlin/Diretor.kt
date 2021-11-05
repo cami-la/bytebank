@@ -11,6 +11,7 @@ class Diretor(nome: String,
 
     override val bonificacao: Double
         get() {
+            println("bonificação diretor");
             return super.bonificacao + salario + plr;
         }
     fun autentica(senha: Int): Boolean {

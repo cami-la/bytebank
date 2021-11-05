@@ -1,48 +1,30 @@
 fun main() {
     println("Bem-vindo ao Bytebank");
 
-    var alex = Funcionario(
-        nome = "Alex",
-        cpf = "111.111.111-11",
-        salario = 1000.0,
-    );
+    val contaCorrente = ContaCorrente(titular = "Alex", numero = 1000);
 
-    println("nome ${alex.nome}");
-    println("cpf ${alex.cpf}");
-    println("salario ${alex.salario}");
-    println("bonificação ${alex.bonificacao}");
-    println("----");
+    val contaPoupanca = ContaPoupanca(titular = "Fran", numero = 1001);
 
-    val fran = Gerente(
-        nome = "Fran",
-        cpf = "222.222.222-22",
-        salario = 4000.0,
-        senha = 1234
-    );
-    println("nome ${fran.nome}");
-    println("cpf ${fran.cpf}");
-    println("salario ${fran.salario}");
-    println("bonificação ${fran.bonificacao}");
-    if (fran.autentica(senha = 1234)) println("Autenticou com sucesso.");
-    else println("Falha na autenticação.");
-    println("----");
+    contaCorrente.deposita(valor = 1000.0);
+    contaPoupanca.deposita(valor = 1000.0);
 
-    val gui = Diretor(
-        nome = "Gui",
-        cpf = "333.333.333-33",
-        salario = 4000.0,
-        senha = 1235,
-        plr = 200.0
-    );
-    println("nome ${gui.nome}");
-    println("cpf ${gui.cpf}");
-    println("salario ${gui.salario}");
-    println("bonificação ${gui.bonificacao}");
-    println("plr ${gui.plr}");
+    println("Saldo corrente ${contaCorrente.saldo}");
+    println("Saldo Poupança ${contaPoupanca.saldo}");
 
-    if (gui.autentica(senha = 1235)) println("Autenticou com sucesso.");
-    else println("Falha na autenticação.");
+    contaCorrente.saca(100.0);
+    contaPoupanca.saca(100.0);
 
+    println("Saldo corrente após saque: ${contaCorrente.saldo}");
+    println("Saldo Poupança após saque: ${contaPoupanca.saldo}");
+
+    println("---")
+    contaCorrente.transfere(100.0, contaPoupanca);
+    println("Saldo corrente após transferir: ${contaCorrente.saldo}");
+    println("Saldo poupança após receber transferência: ${contaPoupanca.saldo}");
+
+    contaPoupanca.transfere(100.0, contaCorrente)
+    println("Saldo poupança após transferir: ${contaPoupanca.saldo}");
+    println("Saldo corrente após receber transferência: ${contaCorrente.saldo}");
 }
 
 

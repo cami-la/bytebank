@@ -4,7 +4,10 @@ open class Funcionario(
     val salario: Double,
 ) {
 
-    open val bonificacao: Double get() = this.salario * 0.1;
+    open val bonificacao: Double get() {
+        println("bonificação funcionário");
+        return this.salario * 0.1;
+    }
 
 
 
