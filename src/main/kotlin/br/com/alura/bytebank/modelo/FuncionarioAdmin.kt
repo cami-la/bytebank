@@ -1,3 +1,5 @@
+package br.com.alura.bytebank.modelo
+
 abstract class FuncionarioAdmin(
     nome: String,
     cpf: String,

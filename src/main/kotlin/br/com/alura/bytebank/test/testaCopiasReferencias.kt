@@ -1,3 +1,6 @@
+import br.com.alura.bytebank.modelo.ContaCorrente
+import br.com.alura.bytebank.modelo.ContaPoupanca
+
 fun testaCopiasEReferencias() {
     val numeroX: Int = 10;
     var numeroY: Int = numeroX;

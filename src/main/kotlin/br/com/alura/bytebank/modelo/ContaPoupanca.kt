@@ -1,3 +1,5 @@
+package br.com.alura.bytebank.modelo
+
 class ContaPoupanca(
     titular: String,
     numero: Int

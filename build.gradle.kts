@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    testImplementation(kotlin("br.com.alura.bytebank.test"))
 }
 
 tasks.test {
