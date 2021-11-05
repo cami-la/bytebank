@@ -4,8 +4,7 @@ fun main() {
     /*val palavra: String = "";
     val palavraJava: StringJava = StringJava("");*/
 
-    val cliente = Cliente(nome = "Alex", cpf="", senha=1);
-
+    testaContasDiferentes();
 }
 
 
