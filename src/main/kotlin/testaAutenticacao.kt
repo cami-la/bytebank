@@ -14,14 +14,14 @@ fun testaAutenticacao() {
         200.0
     );
 
-    var cliente = Cliente(
+    val cliente = Cliente(
         nome = "Gui",
         cpf = "333.333.333-33",
         senha = 1234
     );
 
     val sistema = SistemaInterno();
-    sistema.entra(funcionarioAdmin = gerente, senha = 1000);
-    sistema.entra(funcionarioAdmin = diretora, senha = 1000);
-    sistema.entra(funcionarioAdmin = diretora, senha = 1000);
+    sistema.entra(autenticavel = gerente, senha=1000);
+    sistema.entra(autenticavel = diretora, senha=2000);
+    sistema.entra(autenticavel = cliente, senha = 1234);
 }
