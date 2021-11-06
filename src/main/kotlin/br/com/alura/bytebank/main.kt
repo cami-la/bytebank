@@ -1,36 +1,36 @@
-import br.com.alura.bytebank.modelo.*
-
-
+import br.com.alura.bytebank.modelo.Endereco
 
 fun main() {
-    /*val palavra: String = "";
-    val palavraJava: StringJava = StringJava("");*/
 
-    val fran = object : Autenticavel {
-        val nome: String = "Fran";
-        val cpf: String = "111.111.111-..";
-        val senha: Int = 10000
-
-        override fun autentica(senha: Int) = this.senha == senha;
-    }
-
-    val sistemaInterno = SistemaInterno();
-    sistemaInterno.entra(autenticavel =fran, senha= 10000);
-
-    println("Nome do cliente ${fran.nome}");
-
-    val alex = Cliente(
-        nome = "Alex",
-        cpf = "111.111.111-11",
-        senha = 1
+    val endereco = Endereco(
+        logradouro = "Rua Vergueiro",
+        complemento = "Alura",
+        cep = "00000-000"
     );
-    val contaPoupanca = ContaPoupanca(titular = alex, numero = 1000);
-    val contaCorrente = ContaCorrente(titular = alex, numero = 1001);
+    val enderecoNovo = Endereco(
+        logradouro = "Rua Vergueiro",
+        complemento = "Alura",
+        cep = "00000-000"
+    );
 
-    testaContasDiferentes();
+    println(endereco.equals(enderecoNovo));
+    println("---");
+    println(enderecoNovo.hashCode());
+    println(endereco.hashCode());
+    println("---");
+    println(endereco.toString());
+    println(enderecoNovo.toString());
+    println("---");
+    println("${endereco.javaClass}@${Integer.toHexString(endereco.hashCode())}");
 
-    println("Total de contas: ${Conta.total}");
 }
+
+fun imprime(valor: Any): Any {
+    println(valor);
+    return valor;
+}
+
+
 
 
 
