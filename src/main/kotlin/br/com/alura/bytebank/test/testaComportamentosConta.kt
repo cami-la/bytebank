@@ -1,16 +1,18 @@
+import br.com.alura.bytebank.exception.SaldoInsuficienteException
 import br.com.alura.bytebank.modelo.Cliente
 import br.com.alura.bytebank.modelo.ContaCorrente
 import br.com.alura.bytebank.modelo.ContaPoupanca
+import javax.swing.JOptionPane
 
 fun testaComportamentosConta() {
 
-    val alex = Cliente(nome= "Alex", cpf="111.111.111-11", senha=1) ;
+    val alex = Cliente(nome = "Alex", cpf = "111.111.111-11", senha = 1);
 
     val contaAlex = ContaCorrente(alex, numero = 1000);
     contaAlex.deposita(200.0);
     println(contaAlex.saldo);
 
-    val fran = Cliente(nome= "Fran", cpf="222.222.222-22", senha=2) ;
+    val fran = Cliente(nome = "Fran", cpf = "222.222.222-22", senha = 2);
 
     val contaFran = ContaPoupanca(fran, numero = 1001);
     contaFran.deposita(300.0);
@@ -62,16 +64,25 @@ fun testaComportamentosConta() {
     println(contaFran.saldo);
     println(contaAlex.saldo);
     println("Transferência Fran -> Alex");
-    if (contaFran.transfere(100.0, contaAlex)) println("Transferência sucedida!");
-    else println("Falha na transferência.")
+
+    try {
+        (contaFran.transfere(50.0, contaAlex))
+        println ("Transferência sucedida!");
+    } catch (e: SaldoInsuficienteException) {
+        JOptionPane.showMessageDialog(null, e.message);
+        e.printStackTrace()
+    }
+
+//    println("Falha na transferência.")
     println(contaFran.saldo);
     println(contaAlex.saldo);
     println("---")
     println(contaFran.saldo);
     println(contaAlex.saldo);
     println("Transferência Alex -> Fran");
-    if (contaAlex.transfere(300.0, contaFran)) println("Transferência sucedida!");
-    else println("Falha na transferência.")
+    /*if (contaAlex.transfere(300.0, contaFran)) println("Transferência sucedida!");
+    else println("Falha na transferência.")*/
     println(contaFran.saldo);
     println(contaAlex.saldo);
+
 }
