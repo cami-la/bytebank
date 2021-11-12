@@ -1,27 +1,39 @@
 import br.com.alura.bytebank.modelo.Endereco
+import br.com.alura.bytebank.test.testaNullable
 
 fun main() {
-
-    var enderecoNulo: Endereco? = Endereco("Rua do Vergueiro", complemento="casa");
-
-    val logradouroNovo: String? = enderecoNulo?.logradouro
-
-    enderecoNulo?.let {
-        println(it.logradouro.length);
-        val tamanhoComplemento: Int = it.complemento?.length ?: throw IllegalArgumentException("Complemento não pode ser vazio")
-        println(tamanhoComplemento)
+    val minhaFuncao: () -> Unit = fun (){
+        println("Executa com lambda")
     }
-    teste("");
-    teste(1);
+    println(minhaFuncao)
+
+    val minhaFuncaoAnonima: () -> Unit = fun(){
+        println("Executa como função anônima")
+    }
+    println(minhaFuncaoAnonima)
+
 }
 
-fun teste(valor: Any){
-    val numero: Int? = valor as? Int;
-    println(numero);
+fun testaTipoFuncaoClasse() {
+    val minhaFuncaoClasses: () -> Unit = Teste()
+    println(minhaFuncaoClasses())
 }
 
+fun testaTipoFuncaoReferencia() {
+    val minhaFuncao: () -> Unit = ::teste
+    print(minhaFuncao())
+}
 
+fun teste() {
+    println("Executa teste")
+}
 
+class Teste : () -> Unit {
+    override fun invoke() {
+        println("Executa invoke do teste")
+    }
+
+}
 
 
 
