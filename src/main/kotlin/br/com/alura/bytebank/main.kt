@@ -1,38 +1,52 @@
-import br.com.alura.bytebank.modelo.Endereco
-import br.com.alura.bytebank.test.testaNullable
-
 fun main() {
-    val minhaFuncao: () -> Unit = fun (){
-        println("Executa com lambda")
-    }
-    println(minhaFuncao)
+/*    testaTipoFuncaoReferencia()
+    testaTipoFuncaoClasse()*/
 
-    val minhaFuncaoAnonima: () -> Unit = fun(){
-        println("Executa como função anônima")
+    val minhaFuncaoLambda: (Int, Int) -> Int = { a, b ->
+        a + b
     }
-    println(minhaFuncaoAnonima)
+    println(minhaFuncaoLambda(15, 10))
+
+    val minhaFuncaoAnonima: (Int, Int) -> Int = fun(a, b) : Int{
+        return a + b
+    }
+    println(minhaFuncaoAnonima(20, 10))
+
+    val calculaBonificacao: (salario: Double) -> Double = lambda@{ salario ->
+        if(salario > 1000.0) {
+            return@lambda salario + 50
+        }
+        return@lambda salario + 100
+    }
+    println(calculaBonificacao(1100.0))
+
+    val calculaBonificacaoAnonima: (salario:Double) -> Double = fun(salario): Double {
+        if(salario > 1000.0) {
+            return salario + 50
+        }
+        return salario + 100
+    }
+
+    println(calculaBonificacaoAnonima(1100.0))
 
 }
 
 fun testaTipoFuncaoClasse() {
-    val minhaFuncaoClasses: () -> Unit = Teste()
-    println(minhaFuncaoClasses())
+    val minhaFuncaoClasses: (Int, Int) -> Int = Soma()
+    println(minhaFuncaoClasses(10, 10))
 }
 
 fun testaTipoFuncaoReferencia() {
-    val minhaFuncao: () -> Unit = ::teste
-    print(minhaFuncao())
+    val minhaFuncao: (Int, Int) -> Int = ::soma
+    print(minhaFuncao(5, 10))
 }
 
-fun teste() {
-    println("Executa teste")
+fun soma(a: Int, b: Int) : Int {
+   return a + b
 }
 
-class Teste : () -> Unit {
-    override fun invoke() {
-        println("Executa invoke do teste")
-    }
-
+class Soma : (Int, Int) -> Int {
+    override fun invoke(a: Int, b: Int): Int = a + b
 }
 
 
