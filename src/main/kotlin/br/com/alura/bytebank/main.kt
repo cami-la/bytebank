@@ -1,52 +1,45 @@
+import br.com.alura.bytebank.modelo.Autenticavel
+import br.com.alura.bytebank.modelo.Endereco
+import br.com.alura.bytebank.modelo.SistemaInterno
+
 fun main() {
-/*    testaTipoFuncaoReferencia()
-    testaTipoFuncaoClasse()*/
+//    val endereco = Endereco(logradouro = "rua Vergueiro", numero = 3185)
+//    val enderecoEmMaiusculo = "${endereco.logradouro}, ${endereco.numero}".toUpperCase()
+//
+//    println(enderecoEmMaiusculo)
 
-    val minhaFuncaoLambda: (Int, Int) -> Int = { a, b ->
-        a + b
+   Endereco(logradouro = "rua Vergueiro", numero = 3185).let { endereco ->
+        "${endereco.logradouro}, ${endereco.numero}".uppercase()
+    }.let (::println)
+
+    val enderecosComComplemento = listOf(
+        Endereco(complemento = "casa"),
+        Endereco(),
+        Endereco(complemento = "apartamento")
+    )
+        .filter { endereco -> endereco.complemento?.isNotEmpty() ?: false }
+//        .count()
+        .let(block = (::println))
+
+    soma(1,5, resultado =  {
+        resultado ->
+        println(resultado)
+    })
+
+    val autenticavel = object : Autenticavel {
+        val senha = 1234
+        override fun autentica(senha: Int) = this.senha == senha
     }
-    println(minhaFuncaoLambda(15, 10))
 
-    val minhaFuncaoAnonima: (Int, Int) -> Int = fun(a, b) : Int{
-        return a + b
-    }
-    println(minhaFuncaoAnonima(20, 10))
-
-    val calculaBonificacao: (salario: Double) -> Double = lambda@{ salario ->
-        if(salario > 1000.0) {
-            return@lambda salario + 50
-        }
-        return@lambda salario + 100
-    }
-    println(calculaBonificacao(1100.0))
-
-    val calculaBonificacaoAnonima: (salario:Double) -> Double = fun(salario): Double {
-        if(salario > 1000.0) {
-            return salario + 50
-        }
-        return salario + 100
-    }
-
-    println(calculaBonificacaoAnonima(1100.0))
-
+    SistemaInterno().entra(autenticavel, 1234, autenticado = {
+        println("realizar pagamento.")
+    })
 }
 
-fun testaTipoFuncaoClasse() {
-    val minhaFuncaoClasses: (Int, Int) -> Int = Soma()
-    println(minhaFuncaoClasses(10, 10))
-}
-
-fun testaTipoFuncaoReferencia() {
-    val minhaFuncao: (Int, Int) -> Int = ::soma
-    print(minhaFuncao(5, 10))
-}
-
-fun soma(a: Int, b: Int) : Int {
-   return a + b
-}
-
-class Soma : (Int, Int) -> Int {
-    override fun invoke(a: Int, b: Int): Int = a + b
+fun soma(a: Int, b: Int, resultado: (Int) -> Unit) {
+    println("Antes da soma")
+    resultado(a+b)
+    println("Depois da soma")
 }
 
 
