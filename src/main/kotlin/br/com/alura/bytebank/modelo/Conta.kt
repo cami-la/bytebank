@@ -15,10 +15,10 @@ abstract class Conta(
             private set;
     }
 
-    init {
+    /*init {
         println("Criando conta")
         total++;
-    }
+    }*/
 
     override fun autentica(senha: Int): Boolean {
         return titular.autentica(senha);
