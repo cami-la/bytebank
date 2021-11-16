@@ -8,11 +8,29 @@ fun main() {
 //
 //    println(enderecoEmMaiusculo)
 
-   Endereco(logradouro = "rua Vergueiro", numero = 3185).let { endereco ->
-        "${endereco.logradouro}, ${endereco.numero}".uppercase()
-    }.let (::println)
+    /*Endereco(logradouro = "rua Vergueiro", numero = 3185)
+        .let { endereco ->
+         "${endereco.logradouro}, ${endereco.numero}".uppercase()
+     }.let (::println)*/
 
-    val enderecosComComplemento = listOf(
+    run {
+        println("Execução do run sem extensão.")
+    }
+
+    Endereco()
+        .also { println("Criando endereço") }
+        .apply {
+            logradouro = "Rua Vergueiro"
+            numero = 3185
+        }
+
+    val endereco1 = Endereco(logradouro = "rua Vergueiro", numero = 3185)
+
+    with(endereco1) {
+        "${this.logradouro}, ${this.numero}".uppercase()
+    }.let(::println)
+
+    listOf(
         Endereco(complemento = "casa"),
         Endereco(),
         Endereco(complemento = "apartamento")
@@ -21,8 +39,7 @@ fun main() {
 //        .count()
         .let(block = (::println))
 
-    soma(1,5, resultado =  {
-        resultado ->
+    soma(1, 5, resultado = { resultado ->
         println(resultado)
     })
 
@@ -38,7 +55,7 @@ fun main() {
 
 fun soma(a: Int, b: Int, resultado: (Int) -> Unit) {
     println("Antes da soma")
-    resultado(a+b)
+    resultado(a + b)
     println("Depois da soma")
 }
 
